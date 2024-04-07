@@ -1,5 +1,7 @@
 package co.simplon.davelooper.entities;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -32,6 +34,7 @@ public class Account extends BaseEntity {
 	this.username = username;
     }
 
+    // @JsonIgnore
     public String getPassword() {
 	return password;
     }
@@ -46,6 +49,21 @@ public class Account extends BaseEntity {
 
     public void setRole(Role role) {
 	this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj) { // performance
+	    return true;
+	}
+	// pattern matching
+	return obj instanceof Account other
+		&& Objects.equals(username, other.username);
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(username);
     }
 
     @Override

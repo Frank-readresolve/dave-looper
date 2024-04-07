@@ -1,5 +1,7 @@
 package co.simplon.davelooper.entities;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -56,8 +58,19 @@ public class Skill extends BaseEntity {
     }
 
     @Override
+    public boolean equals(Object obj) {
+	if (this == obj) { // performance
+	    return true;
+	}
+	// pattern matching
+	return obj instanceof Skill other
+		&& Objects.equals(developer, other.developer)
+		&& Objects.equals(language, other.language);
+    }
+
+    @Override
     public String toString() {
-	return "{developer=" + developer + ", language=" + language + ", level="
+	return "{developer=[StackOverFlow], language=" + language + ", level="
 		+ level + "}";
     }
 

@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -22,11 +24,11 @@ public class Developer extends BaseEntity {
     @Embedded
     private Person identity;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @OneToMany(mappedBy = "developer")
+    @OneToMany(mappedBy = "developer", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Skill> skills;
 
@@ -39,7 +41,7 @@ public class Developer extends BaseEntity {
     }
 
     public void setRegistrationNumber(String number) {
-	this.registrationNumber = number;
+	registrationNumber = number;
     }
 
     public Person getIdentity() {

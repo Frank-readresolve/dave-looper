@@ -1,9 +1,10 @@
 package co.simplon.davelooper.dtos;
 
-import co.simplon.davelooper.dtos.validation.UniqueLanguageCode;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
-public record LanguageCreate(@NotEmpty @UniqueLanguageCode String code,
-	@NotEmpty String name) {
+public record LanguageCreate(@NotEmpty String code,
+	@NotBlank @Size(min = 2, max = 10) String name) {
     //
 }

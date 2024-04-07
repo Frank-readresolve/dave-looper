@@ -5,7 +5,7 @@ DELETE FROM t_languages;
 DELETE FROM t_roles;
 
 INSERT INTO t_languages (code, "name") VALUES 
-	('CD001', 'Java'), ('CD002', 'JavaScript'), ('CD003', 'HTML');
+	('CD001', 'Java'), ('CD002', 'JavaScript'), ('CD003', 'HTML'), ('CD004', 'CSS'), ('CD005', 'Python');
 
 INSERT INTO t_roles (code, "name") VALUES 
 	('ROLE_DEV', 'Developer'), ('ROLE_MODERATOR', 'Moderator');
